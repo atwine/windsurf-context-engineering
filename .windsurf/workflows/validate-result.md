@@ -13,30 +13,40 @@ This workflow validates that the implemented project meets all requirements and 
    - Review success criteria and requirements
    - Understand expected functionality
 
-2. **Code Quality Review**
-   - Check code follows project guidelines
-   - Verify proper documentation and comments
-   - Ensure consistent coding style
+2. **Automated Security Scanning**
+   - **SAST Analysis**: Run static application security testing
+   - **Dependency Vulnerabilities**: Scan for known security issues in dependencies
+   - **Secrets Detection**: Check for hardcoded API keys, passwords, tokens
+   - **License Compliance**: Verify all dependencies have compatible licenses
+   - **OWASP Top 10**: Check for common web application vulnerabilities
 
-3. **Functional Testing**
-   - Run all automated tests
-   - Verify core features work as specified
-   - Test edge cases and error handling
+3. **Code Quality Metrics**
+   - **Cyclomatic Complexity**: Analyze code complexity and maintainability
+   - **Code Duplication**: Detect and report duplicate code blocks
+   - **Maintainability Index**: Calculate overall code maintainability score
+   - **Code Smells**: Identify potential design and implementation issues
+   - **Technical Debt**: Assess and quantify technical debt
 
-4. **Requirements Verification**
-   - Check each requirement from original prompt
-   - Confirm all features are implemented
-   - Validate against success criteria
+4. **Test Coverage Validation**
+   - **Coverage Analysis**: Ensure minimum test coverage thresholds
+   - **Test Quality Assessment**: Evaluate test effectiveness and completeness
+   - **Edge Case Coverage**: Verify edge cases and error conditions are tested
+   - **Integration Test Validation**: Check integration between components
+   - **Performance Test Results**: Validate performance benchmarks
 
-5. **Performance Assessment**
-   - Check for obvious performance issues
-   - Verify resource usage is reasonable
-   - Test with realistic data volumes
+5. **Dependency Audit**
+   - **Vulnerability Scanning**: Check for known security vulnerabilities
+   - **License Compatibility**: Ensure license compliance
+   - **Version Currency**: Identify outdated dependencies
+   - **Supply Chain Security**: Verify dependency integrity
+   - **Dependency Tree Analysis**: Check for conflicting dependencies
 
-6. **Security Review**
-   - Check for common security vulnerabilities
-   - Verify proper input validation
-   - Ensure no hardcoded secrets
+6. **Performance Bottleneck Detection**
+   - **Database Query Analysis**: Identify slow or inefficient queries
+   - **Memory Usage Profiling**: Check for memory leaks and excessive usage
+   - **CPU Usage Analysis**: Identify CPU-intensive operations
+   - **Network Latency Assessment**: Check for network performance issues
+   - **Scalability Assessment**: Evaluate system scalability potential
 
 7. **Documentation Check**
    - Verify README is complete and accurate

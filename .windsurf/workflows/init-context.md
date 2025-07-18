@@ -17,11 +17,16 @@ This workflow loads the context engineering framework for structured AI developm
    - Note available code patterns and reference implementations
 
 3. **Present Framework Overview**
-   - Explain the 4-step context engineering process:
-     1. Define Project (initial prompt)
-     2. Generate Plan (comprehensive planning)
-     3. Review Plan (human validation)
-     4. Execute Plan (autonomous implementation)
+   - Explain the enhanced context engineering process:
+     1. Define Project (initial prompt with adaptive templates)
+     2. Generate Plan (comprehensive planning with real-time knowledge)
+     3. Review Plan (human validation with quality guardrails)
+     4. Execute Plan (autonomous implementation with MCP integration)
+   - Highlight new capabilities:
+     - Real-time documentation access via MCP servers
+     - Automated security and quality validation
+     - Context-aware template selection
+     - Community solution integration
 
 4. **Request Initial Prompt**
    - Ask the user to provide their initial project prompt file path

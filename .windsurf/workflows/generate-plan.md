@@ -16,7 +16,12 @@ This workflow creates a detailed, step-by-step implementation plan from your pro
    - Review all files in the `examples/` directory
    - Extract patterns, conventions, and implementation approaches
 
-3. **Research Documentation**
+3. **Dynamic Research Phase**
+   - **Web Search Integration**: Search for current documentation and best practices
+   - **API Endpoint Validation**: Verify all mentioned APIs are accessible and current
+   - **Documentation Freshness**: Check documentation dates and version compatibility
+   - **Breaking Change Detection**: Identify recent breaking changes in dependencies
+   - **Research Result Caching**: Cache research results to avoid redundant searches
    - Review all provided documentation links
    - Gather current best practices and API information
 

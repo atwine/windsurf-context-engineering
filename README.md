@@ -1,6 +1,6 @@
 # Context Engineering Framework for Windsurf & Cascade
 
-A structured approach to AI-assisted development that replaces "vibe coding" with comprehensive context engineering.
+A structured approach to AI-assisted development that replaces "vibe coding" with comprehensive context engineering and real-time knowledge access.
 
 ## 🎯 What is Context Engineering?
 
@@ -8,7 +8,9 @@ Context engineering is the practice of providing comprehensive, structured conte
 
 - **Structured Planning**: Comprehensive project requirements and architecture
 - **Examples & Patterns**: Reference implementations and coding standards
-- **Documentation**: Current API references and best practices
+- **Real-time Knowledge**: Current documentation and community solutions via MCP servers
+- **Quality Assurance**: Automated security, code quality, and test coverage validation
+- **Adaptive Templates**: Context-aware project templates and patterns
 - **Human Validation**: Review checkpoints to ensure quality
 
 ## 🚀 Quick Start
@@ -32,12 +34,38 @@ windsurf-context-engineering/
 │   └── workflows/           # Windsurf workflow definitions
 │       ├── init-context.md
 │       ├── generate-plan.md
-│       └── execute-plan.md
-├── _workflow_definitions/
-│   └── rules/
-│       └── project-guidelines.md  # Global coding standards
+│       ├── execute-plan.md
+│       ├── validate-result.md
+│       ├── research-automation.md
+│       ├── adaptive-template.md
+│       └── mcp-integration.md
+├── mcp/                     # MCP Server Integration (RAG System)
+│   ├── server.py           # MCP server base classes
+│   ├── client.py           # MCP client for server communication
+│   ├── registry.py         # Server lifecycle management
+│   ├── knowledge_base.py   # Persistent knowledge storage
+│   ├── semantic_search.py  # Hybrid semantic search engine
+│   └── servers/            # Specialized MCP servers
+│       ├── react_docs_server.py
+│       └── stackoverflow_server.py
+├── utilities/               # Development utilities
+│   ├── security-scanner.py
+│   ├── code-quality-analyzer.py
+│   ├── test-coverage-validator.py
+│   ├── dependency-tracker.py
+│   ├── project-type-detector.py
+│   ├── adaptive-template-engine.py
+│   └── test_*.py           # Integration test suites
+├── templates/               # Adaptive project templates
+│   ├── web_application_simple.md
+│   ├── rest_api_simple.md
+│   └── ml_project_simple.md
 ├── examples/                # Code patterns and reference implementations
 ├── plans/                   # Generated implementation plans
+├── requirements.txt         # Python dependencies
+├── requirements-dev.txt     # Development dependencies
+├── setup.py                # Package configuration
+├── INSTALL.md              # Installation guide
 ├── initial-prompt-template.md  # Template for new projects
 └── README.md
 ```
@@ -92,11 +120,30 @@ windsurf-context-engineering/
 
 ## 💡 Key Benefits
 
+### 🧠 Intelligence & Knowledge
+- **Real-time Documentation**: Access to current API references and best practices via MCP servers
+- **Community Solutions**: Stack Overflow integration for battle-tested solutions
+- **Semantic Search**: Find relevant patterns and solutions using hybrid search
+- **Knowledge Persistence**: Build organizational knowledge that improves over time
+
+### 🔍 Quality & Security
+- **Automated Security Scanning**: OWASP Top 10, dependency vulnerabilities, secrets detection
+- **Code Quality Analysis**: Complexity, duplication, maintainability metrics
+- **Test Coverage Validation**: Comprehensive test quality assessment
+- **Quality Guardrails**: Automated validation before deployment
+
+### 🎨 Adaptive & Contextual
+- **Smart Template Selection**: Context-aware project templates based on requirements
+- **Technology Detection**: Automatic identification of frameworks and patterns
+- **Complexity Assessment**: Right-sized solutions for project complexity
+- **Pattern Recognition**: Learn from successful implementations
+
+### 🚀 Development Efficiency
 - **Reduced Hallucinations**: Comprehensive context prevents AI guessing
 - **Better Architecture**: Upfront planning creates better structure
-- **Consistent Quality**: Standardized guidelines and patterns
-- **Time Savings**: Less debugging and iteration
-- **Scalable Process**: Repeatable framework for any project
+- **Consistent Quality**: Standardized guidelines and automated validation
+- **Time Savings**: Less debugging and iteration with quality guardrails
+- **Scalable Process**: Repeatable framework for any project size
 
 ## 🔧 Usage Tips
 
