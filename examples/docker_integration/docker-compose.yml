@@ -1,0 +1,118 @@
+version: '3.8'
+
+services:
+  # Main application with learning system integration
+  app:
+    build:
+      context: ../..
+      dockerfile: examples/docker_integration/Dockerfile
+    container_name: windsurf_learning_app
+    ports:
+      - "8080:8080"
+    environment:
+      - APP_NAME=windsurf_learning_demo
+      - ENVIRONMENT=development
+      - LEARNING_DATA_DIR=/app/learning_data
+      - LEARNING_ENABLED=true
+      - HOST=0.0.0.0
+      - PORT=8080
+    volumes:
+      - learning_data:/app/learning_data
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "python", "-c", "from docker_app import health_check; exit(0 if health_check() else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - learning_network
+    depends_on:
+      - learning_system
+
+  # Standalone learning system service
+  learning_system:
+    build:
+      context: ../..
+      dockerfile: examples/docker_integration/Dockerfile.learning
+    container_name: windsurf_learning_system
+    ports:
+      - "8001:8001"
+    environment:
+      - LEARNING_DATA_DIR=/app/learning_data
+      - LEARNING_API_PORT=8001
+    volumes:
+      - learning_data:/app/learning_data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - learning_network
+
+  # Monitoring and metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: windsurf_prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - learning_network
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: windsurf_grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+    restart: unless-stopped
+    networks:
+      - learning_network
+    depends_on:
+      - prometheus
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: windsurf_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - learning_network
+
+volumes:
+  learning_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  learning_network:
+    driver: bridge
