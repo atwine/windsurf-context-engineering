@@ -51,6 +51,30 @@ cover/
 *.mo
 *.pot
 
+# Test files and databases
+test_*.db
+test_*.json
+test_summary_report.md
+tool_integration_test_results.json
+system_status_report.json
+
+# Learning system data
+learning_data/
+workflow_learning_data/
+*.db
+
+# Temporary and demo files
+demo_*.py
+comprehensive_edge_case_tests.py
+robust_edge_case_tests.py
+validate_learning_system.py
+
+# Test data directories
+*test_data/
+robust_test_data/
+stress_test_data/
+edge_test_data/
+
 # Django stuff:
 *.log
 local_settings.py
