@@ -39,3 +39,10 @@ colorama>=0.4.6                     # Cross-platform colored terminal text
 setuptools>=68.0.0                  # Package building and installation tools
 packaging>=23.0                     # Version parsing and comparison
 wheel>=0.40.0                       # Wheel package format
+
+# Phase 1 Enhancement Dependencies
+# ================================
+# Virtual Environment and Git Management
+gitpython>=3.1.0                   # Git operations and analysis
+virtualenv>=20.0.0                  # Enhanced virtual environment management
+psutil>=5.9.0                       # System process monitoring
