@@ -57,14 +57,25 @@ test_*.json
 test_summary_report.md
 tool_integration_test_results.json
 system_status_report.json
+test_learning_data/
+*.db
 
 # Learning system data
 learning_data/
 workflow_learning_data/
-*.db
 
 # Temporary and demo files
 demo_*.py
+temp_files/
+archive/
+validation_scripts/
+temp_cleanup/
+# final_tests/
+
+# Test artifacts (exclude temporary test files but allow final tests)
+# test_*.py
+# validate_*.py
+# *_test_*.py
 comprehensive_edge_case_tests.py
 robust_edge_case_tests.py
 validate_learning_system.py
