@@ -49,6 +49,23 @@ from .git_manager import (
     should_push_now
 )
 
+# Phase 2 Convenience Functions
+def get_linting_integration(project_path='.'):
+    """Get linting integration instance."""
+    return LintingIntegration(project_path)
+
+def get_venv_manager(project_path='.'):
+    """Get virtual environment manager instance."""
+    return VirtualEnvironmentManager(project_path)
+
+def get_git_manager(project_path='.'):
+    """Get git operations manager instance."""
+    return GitOperationsManager(project_path)
+
+def get_command_executor(project_path='.'):
+    """Get python command executor instance."""
+    return PythonCommandExecutor(project_path)
+
 # Phase 3 Intelligence Layer Components
 from .intelligence_engine import (
     IntelligenceEngine,
@@ -79,6 +96,26 @@ from .predictive_analytics import (
     record_performance_metrics
 )
 
+# Phase 4 Production Components
+from .advanced_orchestrator import (
+    AdvancedOrchestrator,
+    OrchestrationTask,
+    ProductionMetrics,
+    get_advanced_orchestration,
+    execute_production_workflow,
+    get_production_status
+)
+
+from .production_manager import (
+    ProductionManager,
+    DeploymentConfig,
+    SystemHealth,
+    DeploymentStatus,
+    get_production_manager,
+    deploy_to_production,
+    check_production_health
+)
+
 __all__ = [
     # Legacy Components
     'LintingIntegration',
@@ -105,6 +142,10 @@ __all__ = [
     'get_git_status',
     'should_commit_now',
     'should_push_now',
+    'get_linting_integration',
+    'get_venv_manager',
+    'get_git_manager',
+    'get_command_executor',
     
     # Phase 3 Intelligence Components
     'IntelligenceEngine',
@@ -128,5 +169,21 @@ __all__ = [
     'get_performance_prediction',
     'get_issue_prediction',
     'get_comprehensive_analytics',
-    'record_performance_metrics'
+    'record_performance_metrics',
+    
+    # Phase 4 Production Components
+    'AdvancedOrchestrator',
+    'OrchestrationTask',
+    'ProductionManager',
+    'DeploymentConfig',
+    'SystemHealth',
+    'DeploymentStatus',
+    
+    # Phase 4 Convenience Functions
+    'get_advanced_orchestration',
+    'execute_production_workflow',
+    'get_production_status',
+    'get_production_manager',
+    'deploy_to_production',
+    'check_production_health',
 ]

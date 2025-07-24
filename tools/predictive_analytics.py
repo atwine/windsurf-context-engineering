@@ -84,11 +84,11 @@ class PredictiveAnalytics:
         
         # Prediction models (simplified)
         self.prediction_models = {
-            'performance': self._predict_performance,
-            'issues': self._predict_issues,
-            'resources': self._predict_resource_usage,
-            'velocity': self._predict_development_velocity,
-            'workflow_optimization': self._predict_workflow_optimization
+            'performance': self.predict_performance,
+            'issues': self.predict_issues,
+            'resources': self.predict_resource_usage,
+            'velocity': self.predict_development_velocity,
+            'workflow_optimization': self.predict_workflow_optimization
         }
         
         # Load historical data

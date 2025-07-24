@@ -222,6 +222,10 @@ class IntelligenceEngine:
             logger.error(f"Error generating recommendations: {e}")
             return []
     
+    def get_recommendations(self, context: Optional[IntelligenceContext] = None) -> List[Recommendation]:
+        """Alias for generate_recommendations for backward compatibility."""
+        return self.generate_recommendations(context)
+    
     def _generate_git_recommendations(self, context: IntelligenceContext) -> List[Recommendation]:
         """Generate Git-related recommendations."""
         recommendations = []

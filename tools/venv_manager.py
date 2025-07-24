@@ -32,6 +32,20 @@ class VenvInfo:
     packages_count: int
     requirements_hash: str
     status: str  # 'healthy', 'corrupted', 'outdated'
+    
+    @property
+    def venv_path(self) -> str:
+        """Alias for path attribute for backward compatibility."""
+        return self.path
+    
+    @property
+    def python_executable(self) -> str:
+        """Get the Python executable path for this virtual environment."""
+        import platform
+        if platform.system() == "Windows":
+            return str(Path(self.path) / "Scripts" / "python.exe")
+        else:
+            return str(Path(self.path) / "bin" / "python")
 
 @dataclass
 class VenvConfig:
