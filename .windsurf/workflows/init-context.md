@@ -8,9 +8,11 @@ This workflow loads the context engineering framework for structured AI developm
 
 // turbo-all
 
-1. **Load Project Guidelines**
-   - Read and understand the project guidelines from `project-guidelines.md`
-   - Apply these rules to all subsequent development work
+1. **Load Project Guidelines and User Workspace Rules**
+   - Read and understand the project guidelines from `docs/project-guidelines.md`
+   - **Extract User Workspace Rules**: Parse user-defined rules from system context
+   - **Initialize Rule Integration**: Set up user workspace rules integration system
+   - Apply both project guidelines and user workspace rules to all subsequent development work
 
 2. **Environment Analysis & Preparation**
    - **Project Type Detection**: Analyze project structure to determine technology stack
