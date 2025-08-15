@@ -29,7 +29,7 @@ This workflow integrates the Windsurf Advanced Learning System with existing Win
 ## **Phase 2: Workflow Enhancement Integration**
 
 4. **Enhance Execute Plan Workflow**
-   - Integrate learning system with `/execute-plan` workflow
+   - Integrate learning system with `/execute-plan-enhanced` workflow
    - Record plan execution outcomes, timing, and success rates
    - Generate intelligent recommendations for plan optimization
    - Track technology stack performance and success patterns
@@ -76,38 +76,41 @@ This workflow integrates the Windsurf Advanced Learning System with existing Win
 
 ## **Implementation**
 
-The learning integration uses the `learning_workflow_integration.py` module to:
+The learning integration uses the `learning/enhanced_workflow_learning.py` module to:
 
 - **Track Workflow Execution**: Automatic monitoring of all workflow activities
 - **Generate Recommendations**: AI-powered suggestions based on learned patterns
 - **Performance Analytics**: Comprehensive metrics and insights
 - **Continuous Learning**: Ongoing improvement through feedback and outcomes
 
-For detailed implementation, see: `learning_workflow_integration.py`
+For detailed implementation, see: `learning/enhanced_workflow_learning.py`
 
 ## **Usage Examples**
 
 ### **Basic Integration**
 ```python
-from learning_workflow_integration import workflow_learning
+from learning.enhanced_workflow_learning import create_enhanced_workflow_learning
 
-# Start tracking a workflow
-workflow_learning.start_workflow_tracking("execute-plan", context)
+enhanced_learning = create_enhanced_workflow_learning("learning_data")
 
-# Get recommendations
-recommendations = workflow_learning.get_workflow_recommendations("execute-plan")
+# Start tracking an enhanced workflow
+context = {"project": "demo"}
+enhanced_learning.start_enhanced_workflow("execute-plan-enhanced", context)
+
+# Get rule-aware recommendations
+recommendations = enhanced_learning.get_rule_aware_recommendations("execute-plan-enhanced")
 
 # Complete tracking
-workflow_learning.complete_workflow_tracking(success=True, results=data)
+enhanced_learning.complete_enhanced_workflow("execute-plan-enhanced", outcome={"success": True})
 ```
 
 ### **Analytics and Insights**
 ```python
-# Get comprehensive analytics
-analytics = workflow_learning.get_workflow_analytics()
+# Get comprehensive analytics (if exposed in your integration layer)
+# analytics = enhanced_learning.get_workflow_analytics()
 
-# Get workflow-specific insights
-insights = workflow_learning.get_workflow_insights("execute-plan")
+# Get workflow-specific insights (use recommendations as insights proxy)
+insights = enhanced_learning.get_rule_aware_recommendations("execute-plan-enhanced")
 ```
 
 ## **Benefits**

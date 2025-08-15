@@ -207,7 +207,7 @@ if __name__ == "__main__":
     print("🎉 Phase 2 Integration Demo Complete!")
     print("=" * 70)
     print("\nNext Steps:")
-    print("1. Use enhanced workflows: /execute-plan, /execute-plan-enhanced, /init-context")
+    print("1. Use enhanced workflows: /execute-plan-enhanced, /init-context")
     print("2. All Python commands will automatically use virtual environments")
     print("3. Git operations will provide intelligent recommendations")
     print("4. Command execution includes environment awareness and Git integration")

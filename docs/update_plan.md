@@ -11,7 +11,7 @@ This plan addresses two critical enhancements to the Windsurf Context Engineerin
 
 ### Repository Structure
 - **Framework Type**: Python-based context engineering system with learning capabilities
-- **Current Workflows**: 9 Windsurf workflows (init-context, generate-plan, execute-plan, etc.)
+- **Current Workflows**: 9 Windsurf workflows (init-context, generate-plan, execute-plan-enhanced, etc.)
 - **Existing Components**: 
   - Learning system with 6 core modules
   - Development tools integration (linting, testing, CI/CD)
@@ -64,7 +64,7 @@ This plan addresses two critical enhancements to the Windsurf Context Engineerin
 
 #### 1.2.1 Execute Plan Workflow Enhancement
 **Sub-objectives:**
-- Modify `execute-plan.md` and `execute-plan-enhanced.md` workflows
+- Modify `execute-plan-enhanced.md` workflow
 - Add venv creation as mandatory first step for Python projects
 - Implement venv activation for all Python command execution
 - Add error handling for venv creation failures
@@ -227,7 +227,7 @@ This plan addresses two critical enhancements to the Windsurf Context Engineerin
 **Priority: High**
 
 #### Phase 2.1: Execute Plan Enhancement
-- [ ] Modify execute-plan workflows for venv integration
+- [ ] Modify execute-plan-enhanced workflow for venv integration
 - [ ] Add Python command wrapping with venv activation
 - [ ] Implement error handling and fallback strategies
 - [ ] Test with various Python project types
@@ -293,7 +293,6 @@ windsurf-context-engineering/
 │   ├── objective_tracker.py     # NEW: Objective completion tracking
 │   └── git_pattern_analyzer.py  # NEW: Git pattern analysis
 └── .windsurf/workflows/
-    ├── execute-plan.md           # MODIFIED: Add venv integration
     ├── execute-plan-enhanced.md  # MODIFIED: Add venv + git integration
     └── init-context.md           # MODIFIED: Add venv planning
 ```

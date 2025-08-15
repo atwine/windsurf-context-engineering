@@ -47,6 +47,24 @@ class VenvInfo:
         else:
             return str(Path(self.path) / "bin" / "python")
 
+    @property
+    def is_healthy(self) -> bool:
+        """Backward-compatibility: expose a boolean health flag.
+
+        Derived from the existing `status` field to avoid changing callers.
+        Returns True when status is 'healthy'.
+        """
+        return self.status == "healthy"
+
+    @property
+    def requirements_synced(self) -> bool:
+        """Backward-compatibility: expose requirements sync flag.
+
+        The manager sets status to 'outdated' when requirements are not in sync,
+        so we treat anything other than 'outdated' as synced.
+        """
+        return self.status != "outdated"
+
 @dataclass
 class VenvConfig:
     """Configuration for virtual environment creation"""

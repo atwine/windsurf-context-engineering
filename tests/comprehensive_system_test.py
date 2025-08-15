@@ -147,9 +147,9 @@ def test_workflow_integration():
     try:
         workflows_dir = project_root / '.windsurf' / 'workflows'
         
+        # Updated: legacy execute-plan workflow is deprecated → using enhanced variant
         required_workflows = [
             'init-context.md',
-            'execute-plan.md', 
             'execute-plan-enhanced.md',
             'generate-plan.md',
             'mainflow.md'
@@ -329,7 +329,7 @@ def main():
         ("Cross-Component Integration", test_cross_component_integration),
         ("Performance Benchmarks", test_performance_benchmarks),
         ("Error Handling & Resilience", test_error_handling_resilience),
-        ("Pytest Suite", test_pytest_suite),
+        # ("Pytest Suite", test_pytest_suite),  # Disabled: prevents recursive invocation of pytest on this file; run `pytest` separately via CLI/CI
     ]
     
     # Execute all test suites

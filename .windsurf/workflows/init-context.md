@@ -51,6 +51,7 @@ This workflow loads the context engineering framework for structured AI developm
    - If no file exists, guide them to create one using the template
    - **Environment Recommendations**: Provide suggestions based on detected project type
    - **Git Workflow Suggestions**: Recommend Git practices based on repository analysis
+   - **Parse ML Flag**: Read `is_ml_project` from the provided prompt (see `initial-prompt-template.md` Section 8). If missing, ask the user to set it and re-run this step. Log the parsed value in memory for routing.
 
 6. **Create Enhanced Project Memory**
    - Store the project context in memory for persistence across chats
@@ -69,3 +70,7 @@ This workflow loads the context engineering framework for structured AI developm
    - Confirm the context is loaded and ready for `/generate-plan`
    - **Environment Summary**: Display environment analysis results
    - **Optimization Suggestions**: Provide recommendations for improved development workflow
+   - **Approval Gate & Routing Recommendation**:
+     - Require manual review and approval of the generated plan before execution
+     - If `is_ml_project: true` → recommend `/tripod-ml-pipeline` after plan approval
+     - If `is_ml_project: false` → recommend `/execute-plan-enhanced` after plan approval

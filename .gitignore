@@ -339,6 +339,11 @@ test_results/
 .coverage
 htmlcov/
 
+# Ephemeral test artifacts (auto-generated during tests)
+test_rules_*/
+validation_*/
+.venv_info.json
+
 # Backup files
 *.bak
 *.backup

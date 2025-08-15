@@ -190,8 +190,7 @@ print(f"Deployment status: {result['status']}")
 ```bash
 # Use built-in workflows
 /init-context              # Initialize project context
-/execute-plan             # Execute with environment management
-/execute-plan-enhanced    # Execute with AI intelligence
+/execute-plan-enhanced     # Execute with AI intelligence and learning
 ```
 
 ## 🧪 Testing & Validation

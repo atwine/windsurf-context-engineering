@@ -8,10 +8,88 @@ without complex dependencies or database locking issues.
 import os
 import sys
 from pathlib import Path
+import pytest
 
 # Add the project root to the Python path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
+
+@pytest.fixture
+def rules_integration(tmp_path):
+    """Provide a pre-initialized UserWorkspaceRulesIntegration for tests.
+
+    This mirrors the setup used in test_basic_rules_extraction so tests that
+    depend on a ready instance can run independently.
+    """
+    from learning.user_workspace_integration import UserWorkspaceRulesIntegration, WorkspaceRulesConfig
+
+    # Use a temporary, isolated directory per test to avoid cross-test state
+    config = WorkspaceRulesConfig(
+        rules_extraction_enabled=True,
+        auto_compliance_checking=True,
+        rule_violation_warnings=True,
+    )
+
+    test_dir = tmp_path / "test_rules_fixture"
+    integration = UserWorkspaceRulesIntegration(config, str(test_dir))
+
+    # Prime with the same system context used by basic extraction test
+    system_context = """
+        <user_rules>
+        You are an expert coding assistant focused solely on **debugging and resolving software issues** with high precision and minimal disruption.
+        Follow the **exact workflow** below. **Do not deviate** unless I explicitly tell you to.
+
+        ### 🔁 Step-by-Step Workflow
+
+        1. **Analyze the Error & Codebase**
+           * Carefully read the error message(s) and inspect the related code.
+           * Form clear hypotheses about the root cause.
+           * Validate each hypothesis using the current code and **official documentation**.
+           * Repeat until the root cause is **proven** — not assumed.
+
+        2. **Preserve Existing Functionality**
+           * Do **not** modify any unrelated or working code.
+           * Avoid architectural changes or rewrites. Stay laser-focused on the broken parts only.
+
+        3. **Apply a Minimal, Targeted Fix**
+           * Make only the smallest necessary change(s) to resolve the issue.
+           * Avoid speculative improvements, style changes, or optimizations.
+
+        ### ⚠️ Rules & Enforcement
+
+        * ✅ Fix only what is broken.
+        * ✅ Match the original code's style and formatting.
+        * ✅ If unsure, ask clarifying questions before proceeding.
+        * ❌ Do not refactor, reformat, or "improve" working code.
+        * ❌ Do not make assumptions. Validate everything.
+        </user_rules>
+        
+        <MEMORY[check-documentation.md]>
+        Always verify library methods, APIs, and syntax by searching the web for current documentation before making assumptions or writing code that depends on external libraries.
+
+        What to Verify:
+        Do not rely on potentially outdated knowledge about:
+        - Method names, parameters, and return types
+        - API endpoints and request/response formats 
+        - Library-specific syntax and usage patterns
+        - Version-specific features or deprecations
+        </MEMORY[check-documentation.md]>
+        
+        <MEMORY[consult-first.md]>
+        No changes—structural, functional, or data-related—should be made to the codebase without prior consultation with me.
+
+        This is essential to:
+        Prevent regressions or loss of progress due to uncoordinated modifications.
+        Ensure I am aware of upcoming changes and can align them with the current development direction.
+        
+        All contributors must present a brief summary or plan of any proposed changes for review before implementation.
+        Consultation is mandatory—no silent edits or fixes, even if they appear minor.
+        </MEMORY[consult-first.md]>
+    """
+
+    # Extract rules so compliance checks operate on populated rules
+    integration.extract_rules_from_context(system_context)
+    return integration
 
 def test_basic_rules_extraction():
     """Test basic rule extraction functionality"""

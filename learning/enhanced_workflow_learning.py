@@ -139,7 +139,13 @@ class EnhancedWorkflowLearning:
                 self.extract_system_context_rules(system_context)
             
             # Start the core learning workflow
-            self.learning_system.start_workflow(workflow_name, project_context or {})
+            # Backward-compatibility shim: older LearningSystemIntegration may not define start_workflow
+            if hasattr(self.learning_system, "start_workflow"):
+                self.learning_system.start_workflow(workflow_name, project_context or {})
+            else:
+                logger.debug(
+                    "LearningSystemIntegration.start_workflow not found; proceeding without base workflow start for backward compatibility"
+                )
             
             # Create enhanced workflow context
             enhanced_context = EnhancedWorkflowContext(
@@ -162,7 +168,9 @@ class EnhancedWorkflowLearning:
         except Exception as e:
             logger.error(f"Error starting enhanced workflow: {e}")
             # Fallback to basic workflow
-            self.learning_system.start_workflow(workflow_name, project_context or {})
+            # Backward-compatibility shim: call only if available
+            if hasattr(self.learning_system, "start_workflow"):
+                self.learning_system.start_workflow(workflow_name, project_context or {})
             return self._create_fallback_context(workflow_name, project_context or {})
     
     def _create_fallback_context(self, workflow_name: str, 
@@ -281,7 +289,11 @@ class EnhancedWorkflowLearning:
         """
         try:
             # Get base learning recommendations
-            base_recommendations = self.learning_system.get_recommendations(workflow_name, current_context)
+            # Backward-compatibility shim: map to get_project_recommendations if get_recommendations is unavailable
+            if hasattr(self.learning_system, "get_recommendations"):
+                base_recommendations = self.learning_system.get_recommendations(workflow_name, current_context)
+            else:
+                base_recommendations = self.learning_system.get_project_recommendations(current_context or {})
             
             # Get workflow context
             workflow_context = self.workflow_contexts.get(workflow_name)
@@ -332,7 +344,10 @@ class EnhancedWorkflowLearning:
         except Exception as e:
             logger.error(f"Error getting rule-aware recommendations: {e}")
             # Fallback to base recommendations
-            base_recommendations = self.learning_system.get_recommendations(workflow_name, current_context)
+            if hasattr(self.learning_system, "get_recommendations"):
+                base_recommendations = self.learning_system.get_recommendations(workflow_name, current_context)
+            else:
+                base_recommendations = self.learning_system.get_project_recommendations(current_context or {})
             return self._convert_base_recommendations(base_recommendations)
     
     def _convert_base_recommendations(self, base_recommendations: List[Dict[str, Any]]) -> List[RuleAwareRecommendation]:
@@ -568,7 +583,15 @@ class EnhancedWorkflowLearning:
         """
         try:
             # Complete the base learning workflow
-            base_completion = self.learning_system.complete_workflow(workflow_name, outcome)
+            # Backward-compatibility shim: older LearningSystemIntegration may not define complete_workflow
+            if hasattr(self.learning_system, "complete_workflow"):
+                base_completion = self.learning_system.complete_workflow(workflow_name, outcome)
+            else:
+                base_completion = {
+                    'workflow_name': workflow_name,
+                    'outcome': outcome,
+                    'status': 'completed'
+                }
             
             # Get workflow context
             workflow_context = self.workflow_contexts.get(workflow_name)
@@ -616,7 +639,13 @@ class EnhancedWorkflowLearning:
         except Exception as e:
             logger.error(f"Error completing enhanced workflow: {e}")
             # Fallback to base completion
-            return self.learning_system.complete_workflow(workflow_name, outcome)
+            if hasattr(self.learning_system, "complete_workflow"):
+                return self.learning_system.complete_workflow(workflow_name, outcome)
+            return {
+                'workflow_name': workflow_name,
+                'outcome': outcome,
+                'status': 'completed'
+            }
     
     def get_enhanced_system_status(self) -> Dict[str, Any]:
         """Get enhanced system status including rule integration"""

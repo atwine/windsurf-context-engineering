@@ -82,3 +82,13 @@
 - [Success criterion 1]
 - [Success criterion 2]
 - [Success criterion 3]
+
+## 8. ML Project Flag (manual)
+<!-- 
+  Set this flag explicitly to control ML workflow routing. 
+  true  -> ML workflows (e.g., TRIPOD+AI pipeline)
+  false -> Standard software workflows
+  Example values: true | false
+-->
+
+is_ml_project: [true|false]

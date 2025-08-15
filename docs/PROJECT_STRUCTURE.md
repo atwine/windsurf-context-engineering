@@ -8,7 +8,7 @@ windsurf-context-engineering/
 │   └── workflows/                    # Windsurf workflow definitions
 │       ├── init-context.md          # Initialize context framework
 │       ├── generate-plan.md         # Generate implementation plans
-│       ├── execute-plan.md          # Execute implementation plans
+│       ├── execute-plan-enhanced.md # Execute implementation plans (enhanced)
 │       ├── validate-result.md       # Validate project results
 │       ├── research-automation.md   # Automated research workflows
 │       ├── adaptive-template.md     # Adaptive template generation

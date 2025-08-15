@@ -146,7 +146,7 @@ survival-analysis-project/
 1. **Create your project prompt** with scikit-learn and sksurv requirements
 2. **Run `/generate-plan ./your-prompt.md`** - research happens automatically
 3. **Review the generated plan** - includes all current best practices
-4. **Run `/execute-plan ./plans/your-plan.md`** - implements with validated APIs
+4. **Run `/execute-plan-enhanced ./plans/your-plan.md`** - implements with validated APIs
 5. **Get working code** that uses current APIs and best practices
 
 The research automation ensures your survival analysis project starts with the most current, validated information available!

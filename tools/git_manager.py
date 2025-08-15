@@ -45,6 +45,19 @@ class GitStatus:
     last_commit_date: str
     remote_url: str
 
+    # Backward-compatibility properties
+    @property
+    def is_clean(self) -> bool:
+        """Backward-compat: repository considered clean when no changes are detected.
+        This maps to the existing `has_changes` flag to avoid touching callers.
+        """
+        return not self.has_changes
+
+    @property
+    def current_branch(self) -> str:
+        """Backward-compat: alias for `branch` used by examples and utilities."""
+        return self.branch
+
 @dataclass
 class CommitRecommendation:
     """Commit recommendation with AI-generated message"""
@@ -65,6 +78,11 @@ class PushRecommendation:
     collaboration_risk: str  # 'low', 'medium', 'high'
     quality_score: float
     blocking_issues: List[str]
+
+    # Backward-compatibility alias for older callers expecting `recommended_timing`
+    @property
+    def recommended_timing(self) -> str:
+        return self.optimal_timing
 
 @dataclass
 class CollaborationInfo:

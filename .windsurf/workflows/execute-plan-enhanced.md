@@ -100,9 +100,9 @@ This workflow executes the generated implementation plan with AI assistance, lea
 
 ## **Implementation**
 
-The enhanced execution uses the `learning_workflow_integration.py` module to:
+The enhanced execution uses the `learning/enhanced_workflow_learning.py` module to:
 - Track workflow progress and performance
 - Apply learned patterns and recommendations
 - Record outcomes for continuous improvement
 
-For detailed implementation, see: `learning_workflow_integration.py`
+For detailed implementation, see: `learning/enhanced_workflow_learning.py`

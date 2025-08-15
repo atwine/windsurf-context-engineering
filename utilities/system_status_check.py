@@ -80,10 +80,11 @@ class SystemStatusChecker:
         """Validate workflow files."""
         print("\n🔄 Checking Workflows...")
         
+        # Updated: legacy execute-plan workflow is deprecated → use enhanced variant
         required_workflows = [
             "init-context.md",
             "generate-plan.md", 
-            "execute-plan.md",
+            "execute-plan-enhanced.md",
             "validate-result.md",
             "research-automation.md",
             "adaptive-template.md",
