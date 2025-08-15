@@ -193,6 +193,49 @@ print(f"Deployment status: {result['status']}")
 /execute-plan-enhanced     # Execute with AI intelligence and learning
 ```
 
+## 🧬 ML/AI Workflow Integration (Repository-Level)
+
+This framework now includes first-class ML/AI workflows with research-first planning, approval gates, and TRIPOD+AI-aligned documentation.
+
+### Core ML/AI Workflows
+- `/init-ml-context` — Analyze repo for ML signals, set up TRIPOD+AI documentation scaffolding
+- `/generate-plan` — Produce a research-backed implementation plan with verified references (approval required)
+- `/tripod-ml-pipeline` — Execute the approved plan with calibrated models, stratified validation, and leakage-safe pipelines
+- `/validate-result` — Summarize outcomes and verify acceptance criteria
+- `/research-automation` — Optional: evidence gathering for methods selection
+
+### Repo-Level Artifacts & Conventions
+- `plans/` — Stores approved ML/AI plans (e.g., `plans/ml_heart_prediction_plan.md`)
+- `docs/tripod_compliance/` — TRIPOD+AI checklist and results (populated during workflows)
+- `.windsurf/workflows/` — Workflow definitions (slash-commands)
+- Determinism: fixed seeds, stratified splitting, calibration on validation only
+- Leakage prevention: preprocessing and SMOTE placed inside CV pipelines (imblearn)
+
+### Guardrails (Framework-Enforced)
+- Research-first planning with user approval before execution
+- Sequential terminal execution; no overlapping commands
+- No calibration or threshold tuning on test data
+- Verified references for external methods and APIs
+
+### Quickstart (ML/AI)
+```bash
+# 1) Initialize ML context (creates compliance docs scaffolding)
+/init-ml-context
+
+# 2) Generate a research-backed plan (approval gate)
+/generate-plan
+
+# 3) Execute approved pipeline with TRIPOD+AI alignment
+/tripod-ml-pipeline
+
+# 4) Validate results against acceptance criteria
+/validate-result
+```
+
+Notes:
+- Example projects (under `examples/`) may provide templates; repo-level workflows work independently of specific examples.
+- Plans and compliance docs are saved in `plans/` and `docs/tripod_compliance/` for auditability.
+
 ## 🧪 Testing & Validation
 
 ### **Quick Validation**
