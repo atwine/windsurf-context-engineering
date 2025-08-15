@@ -385,6 +385,3 @@ python final_validation.py
 
 **Welcome to the future of intelligent development! 🌊✨**
 
----
-
-*Made with ❤️ by the Windsurf Community | [Website](https://windsurf-framework.com) | [Documentation](https://docs.windsurf-framework.com) | [Community](https://community.windsurf-framework.com)*
