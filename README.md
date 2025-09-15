@@ -18,7 +18,7 @@ cd windsurf-context-engineering
 pip install -r requirements.txt
 
 # 2. Verify everything works
-python final_validation.py
+python tests/comprehensive_system_test.py
 
 # 3. Start developing with AI assistance!
 # The framework is now active and learning your patterns
@@ -139,8 +139,8 @@ pip install -e .
 pip install -r requirements-dev.txt
 
 # Run comprehensive tests
-python -m pytest tests/
-python final_tests/complete_system_test.py
+pytest tests/
+python tests/comprehensive_system_test.py
 ```
 
 ## 🎮 Usage Examples
@@ -240,19 +240,16 @@ Notes:
 
 ### **Quick Validation**
 ```bash
-python final_validation.py
+python tests/comprehensive_system_test.py
 ```
 
 ### **Comprehensive Testing**
 ```bash
-# Full system test
-python final_tests/complete_system_test.py
+# Full test suite
+pytest tests/
 
-# Stress testing
-python final_tests/stress_test.py
-
-# Phase-specific tests
-python test_phase4_simple.py
+# End-to-end comprehensive system test
+python tests/comprehensive_system_test.py
 ```
 
 ### **Test Results**
