@@ -18,8 +18,8 @@ import re
 from .knowledge_base import KnowledgeBase, KnowledgeEntry
 from .server import MCPResource
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Library logging: do not configure handlers/levels at import time.
+# Leave configuration to applications. Configure only in __main__ example usage.
 logger = logging.getLogger(__name__)
 
 @dataclass
@@ -516,5 +516,7 @@ async def main():
             print(f"- {result.entry.resource.name}: {result.relevance_score:.3f}")
 
 if __name__ == "__main__":
+    # Example script entrypoint: configure basic logging for demo run only
+    logging.basicConfig(level=logging.INFO)
     import datetime
     asyncio.run(main())

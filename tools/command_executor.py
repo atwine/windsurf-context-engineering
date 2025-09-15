@@ -388,7 +388,8 @@ class PythonCommandExecutor:
                 "exists": self.context.virtual_environment is not None,
                 "path": str(self.context.virtual_environment.venv_path) if self.context.virtual_environment else None,
                 "python_executable": str(self.context.virtual_environment.python_executable) if self.context.virtual_environment else None,
-                "is_healthy": self.context.virtual_environment.is_healthy if self.context.virtual_environment else False
+                "is_healthy": self.context.virtual_environment.is_healthy if self.context.virtual_environment else False,
+                "is_active": self.context.virtual_environment.is_active if self.context.virtual_environment else False  # surfaced from VenvInfo
             },
             "git_status": {
                 "staged_files": len(self.context.git_status.staged_files) if self.context.git_status else 0,

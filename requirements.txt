@@ -13,19 +13,11 @@ beautifulsoup4>=4.12.0              # HTML parsing for documentation scraping
 numpy>=1.24.0                       # Numerical computing for semantic search
 scikit-learn>=1.3.0                 # Machine learning for TF-IDF and similarity
 
-# Security & Quality
-bandit>=1.7.0                       # Security linting
-safety>=2.3.0                       # Dependency vulnerability scanning
+# Security & Quality (moved to requirements-dev.txt)
 
-# Code Analysis
-astroid>=2.15.0                     # AST analysis for code quality
-pylint>=2.17.0                      # Code quality analysis
-flake8>=6.0.0                       # Style guide enforcement
+# Code Analysis (moved to requirements-dev.txt)
 
-# Testing
-coverage>=7.2.0                     # Test coverage analysis
-pytest>=7.4.0                       # Testing framework
-pytest-cov>=4.1.0                   # Coverage plugin for pytest
+# Testing (moved to requirements-dev.txt)
 
 # Documentation & Parsing
 markdown>=3.4.0                     # Markdown processing

@@ -66,7 +66,7 @@ class CommitRecommendation:
     suggested_message: str
     reasoning: str
     files_to_stage: List[str]
-    commit_type: str  # 'feature', 'fix', 'docs', 'refactor', 'test', 'chore'
+    commit_type: str  # 'feat', 'fix', 'docs', 'refactor', 'test', 'chore'
 
 @dataclass
 class PushRecommendation:

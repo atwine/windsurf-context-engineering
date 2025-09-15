@@ -45,7 +45,7 @@ setup(
     description="Enhanced context engineering framework for AI-assisted software development",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/windsurf/context-engineering",
+    url="https://github.com/atwine/windsurf-context-engineering",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -85,8 +85,8 @@ setup(
         "examples": ["*.md", "*.py"],
     },
     project_urls={
-        "Bug Reports": "https://github.com/windsurf/context-engineering/issues",
-        "Source": "https://github.com/windsurf/context-engineering",
+        "Bug Reports": "https://github.com/atwine/windsurf-context-engineering/issues",
+        "Source": "https://github.com/atwine/windsurf-context-engineering",
         "Documentation": "https://windsurf-context-engineering.readthedocs.io/",
     },
 )

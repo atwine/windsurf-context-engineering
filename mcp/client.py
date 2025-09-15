@@ -17,8 +17,8 @@ import hashlib
 
 from .server import MCPQuery, MCPResponse, MCPResource
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Library logging: do not configure handlers/levels at import time.
+# Leave configuration to the application (per Python Logging HOWTO best practice).
 logger = logging.getLogger(__name__)
 
 @dataclass

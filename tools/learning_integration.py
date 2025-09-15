@@ -61,8 +61,12 @@ class LearningSystemIntegration:
             learning_path = self.project_path / "learning"
             if learning_path.exists():
                 self._load_learning_modules()
-                self.integration_active = True
-                logger.info("Successfully integrated with existing learning system")
+                # Activate only if at least one module loaded
+                self.integration_active = len(self.learning_modules) > 0
+                if self.integration_active:
+                    logger.info("Successfully integrated with existing learning system")
+                else:
+                    logger.info("Learning path found but no modules loaded; integration remains inactive")
             else:
                 logger.info("No existing learning system found - running in standalone mode")
                 
@@ -79,14 +83,15 @@ class LearningSystemIntegration:
             if str(learning_path) not in sys.path:
                 sys.path.insert(0, str(learning_path))
             
-            # Try to import common learning modules
+            # Load modules that actually exist in learning/ (surgical change)
             learning_module_names = [
-                'pattern_recognition',
-                'workflow_optimization',
-                'context_learning',
-                'performance_analysis',
-                'recommendation_engine',
-                'learning_core'
+                'pattern_analyzer',
+                'template_evolution',
+                'learning_engine',
+                'metrics_tracker',
+                'feedback_collector',
+                'enhanced_workflow_learning',
+                'user_workspace_integration'
             ]
             
             for module_name in learning_module_names:
@@ -306,14 +311,15 @@ class LearningSystemIntegration:
             # Simulate command results for learning
             for command in execution_data.get('commands', []):
                 from .command_executor import CommandResult
+                # Align with tools/command_executor.CommandResult
                 result = CommandResult(
-                    command=command.get('command', ''),
                     success=command.get('success', True),
-                    exit_code=command.get('exit_code', 0),
+                    returncode=command.get('exit_code', 0),  # Align with CommandResult field name
                     stdout=command.get('output', ''),
                     stderr=command.get('error', ''),
+                    command=command.get('command', ''),
                     execution_time=command.get('duration', 0),
-                    environment_used=command.get('environment', ''),
+                    venv_used=bool(command.get('environment', '')),  # CommandResult expects boolean venv_used
                     git_changes_detected=command.get('git_changes', False)
                 )
                 

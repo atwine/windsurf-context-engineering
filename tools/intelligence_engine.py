@@ -138,7 +138,7 @@ class IntelligenceEngine:
             # Get environment status
             env_status = {
                 'python_project': exec_summary.get('python_project', False),
-                'has_venv': exec_summary.get('virtual_environment', {}).get('active', False),
+                'has_venv': exec_summary.get('virtual_environment', {}).get('exists', False),  # get_execution_summary() exposes 'exists' (not 'active')
                 'venv_path': exec_summary.get('virtual_environment', {}).get('path', ''),
                 'requirements_present': (self.project_path / 'requirements.txt').exists(),
                 'setup_py_present': (self.project_path / 'setup.py').exists()
@@ -547,7 +547,7 @@ class IntelligenceEngine:
                 frequency=1,
                 success_rate=1.0 if result.success else 0.0,
                 average_duration=result.execution_time,
-                common_errors=[result.error] if result.error else [],
+                common_errors=[result.stderr] if result.stderr else [],  # Use stderr from CommandResult; fix attribute mismatch
                 optimization_suggestions=[],
                 last_seen=time.time()
             )
@@ -657,13 +657,13 @@ def learn_from_command(command: str, success: bool, duration: float, project_pat
         # Create mock result for learning
         from .command_executor import CommandResult
         result = CommandResult(
-            command=command,
             success=success,
-            exit_code=0 if success else 1,
+            returncode=0 if success else 1,  # Match CommandResult field name (tools/command_executor.CommandResult)
             stdout="",
             stderr="",
+            command=command,
             execution_time=duration,
-            environment_used="",
+            venv_used=False,  # Use boolean venv_used per CommandResult; not used in this learning path
             git_changes_detected=False
         )
         

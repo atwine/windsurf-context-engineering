@@ -15,8 +15,8 @@ from datetime import datetime
 import hashlib
 import uuid
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Library logging: do not configure handlers/levels at import time.
+# Leave configuration to applications. Configure only in __main__ example usage.
 logger = logging.getLogger(__name__)
 
 @dataclass
@@ -465,4 +465,6 @@ async def main():
     await server.stop()
 
 if __name__ == "__main__":
+    # Example script entrypoint: configure basic logging for demo run only
+    logging.basicConfig(level=logging.INFO)
     asyncio.run(main())

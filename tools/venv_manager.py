@@ -319,7 +319,13 @@ class VirtualEnvironmentManager:
         return command
     
     def execute_in_venv(self, command: str, **kwargs) -> subprocess.CompletedProcess:
-        """Execute a command in the virtual environment"""
+        """Execute a command in the virtual environment.
+
+        Security note: When given a list command, use shell=False per Python subprocess best
+        practices to reduce shell injection risk. For backward compatibility with existing
+        string-based call sites, we retain shell=True when command is a string. TODO: migrate
+        all call sites to pass a list to prefer shell=False.
+        """
         if not self.venv_exists():
             raise RuntimeError("Virtual environment does not exist")
         
@@ -332,12 +338,22 @@ class VirtualEnvironmentManager:
         env.pop("PYTHONHOME", None)
         
         # Execute command
-        return subprocess.run(
-            command,
-            env=env,
-            shell=True,
-            **kwargs
-        )
+        if isinstance(command, list):
+            # Safer: list-args with shell=False
+            return subprocess.run(
+                command,
+                env=env,
+                shell=False,
+                **kwargs
+            )
+        else:
+            # Backward-compatible path for string commands (existing callers)
+            return subprocess.run(
+                command,
+                env=env,
+                shell=True,
+                **kwargs
+            )
     
     def validate_venv(self) -> Tuple[bool, List[str]]:
         """Validate virtual environment health and requirements"""
